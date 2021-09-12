@@ -13,7 +13,7 @@ gem "puma", "~> 5.3"
 # Authentication and related security policies
 gem "devise"
 
-gem "bootstrap", "~> 4.3"
+gem "bootstrap", "~> 4.5"
 # Easier Bootstrap forms
 gem "bootstrap_form", github: "bootstrap-ruby/bootstrap_form", branch: "main"
 
