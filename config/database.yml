@@ -10,24 +10,24 @@
 #   https://dev.mysql.com/doc/refman/5.7/en/password-hashing.html
 #
 default: &default
-  adapter: <%= ENV["DB_ADAPTER"] || "mysql2" %>
+  adapter: mysql2
   encoding: utf8mb4
   collation: utf8mb4_unicode_ci
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 10 } %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: localhost
   username: root
-  password: <%= ENV.fetch("MYSQL_ROOT_PASSWORD") %>
-  host: <%= ENV.fetch("DATABASE_HOST") %>
-
+  password: <%= ENV.fetch("MYSQL_ROOT_PASSWORD", "") %>
+  
 development:
   <<: *default
-  database: <%= ENV.fetch("MYSQL_DB") %>
+  database: forum_app_development
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: forum_zmey_test<%= ENV['TEST_ENV_NUMBER'] %>
+  database: forum_app_test
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -51,3 +51,6 @@ test:
 #
 production:
   <<: *default
+  database: forum_app_production
+  username: root
+  password: <%= Rails.application.credentials.mysql_password %>
