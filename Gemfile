@@ -4,28 +4,34 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.0.2"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
-gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
-# Use mysql2 as the database for Active Record
+gem "rails", "~> 6.1.4", ">= 6.1.4.1"
+# Use mysql as the database for Active Record
 gem "mysql2", "~> 0.5"
 # Use Puma as the app server
-gem 'puma', '~> 5.0'
+gem "puma", "~> 5.3"
+
+# Authentication and related security policies
+gem "devise"
+
+gem "bootstrap", "~> 4.3"
+# Easier Bootstrap forms
+gem "bootstrap_form", github: "bootstrap-ruby/bootstrap_form", branch: "main"
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '>= 6'
+gem "sass-rails", ">= 6"
 # Use Uglifier as compressor for JavaScript assets
 gem "uglifier", ">= 1.3.0"
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
-gem 'webpacker', '~> 5.0'
+gem "webpacker", "~> 5.0"
+
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5'
+# gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.7'
+# gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-
-gem "devise"
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -35,7 +41,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
   gem "factory_bot_rails"
   gem "rspec-rails", "~> 5.0"
 
@@ -44,6 +50,11 @@ group :development, :test do
 
   # Standard - Ruby style guide, linter, and formatter
   gem "standard"
+  # Use Capistrano for deployment
+  gem "capistrano", "~> 3.10", require: false
+  gem "capistrano-rails", "~> 1.3", require: false
+  gem "capistrano-rvm", git: "https://github.com/capistrano/rvm.git"
+  gem "capistrano3-puma", require: false
 end
 
 group :development do
@@ -63,11 +74,12 @@ end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 3.26'
-  gem 'selenium-webdriver'
-  # Easy installation and use of web drivers to run system tests with browsers
-  gem 'webdrivers'
-  gem "shoulda-matchers", "~> 4.0"
+  gem "capybara", ">= 2.15"
+  gem "selenium-webdriver"
+  gem "shoulda-matchers"
+  gem "launchy"
+  gem "rspec-html-matchers"
+  gem "webmock", "~> 3.0"
 
 end
 
